@@ -1,0 +1,10 @@
+## Interface: 20505
+## Title: FPS Mover
+## Notes: Move the FPS counter anywhere on screen using a draggable anchor.
+## Author: Marris
+## Version: @project-version@
+## SavedVariables: FPS_MoverDB
+## OptionalDeps: Ace3
+
+embeds.xml
+FPS_Mover.lua
