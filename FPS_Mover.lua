@@ -8,13 +8,13 @@ local anchorFrame = nil
 
 -- Session-only state (not saved)
 local sessionState = {
-    enabled = false,
     showAnchor = false,
 }
 
--- Default settings (only position is saved)
+-- Default settings
 local defaults = {
     profile = {
+        enabled = false,
         point = "CENTER",
         relativePoint = "CENTER",
         anchorX = 0,
@@ -45,9 +45,9 @@ local options = {
             type = "toggle",
             name = "Enable Moving",
             desc = "Move the FPS counter to the saved position. Uncheck to return to default.",
-            get = function(info) return sessionState.enabled end,
+            get = function(info) return FPS_Mover.db.profile.enabled end,
             set = function(info, value)
-                sessionState.enabled = value
+                FPS_Mover.db.profile.enabled = value
                 FPS_Mover:ApplySettings()
             end,
             order = 1,
@@ -104,7 +104,7 @@ function FPS_Mover:CreateAnchorFrame()
         FPS_Mover.db.profile.relativePoint = relativePoint
         FPS_Mover.db.profile.anchorX = x
         FPS_Mover.db.profile.anchorY = y
-        if sessionState.enabled then
+        if FPS_Mover.db.profile.enabled then
             FPS_Mover:ApplyFPSPosition()
         end
     end)
@@ -152,7 +152,7 @@ end
 function FPS_Mover:ApplySettings()
     if not HasFPSFrames() then return end
 
-    if sessionState.enabled then
+    if FPS_Mover.db.profile.enabled then
         self:ApplyFPSPosition()
     else
         self:ResetFPS()
@@ -172,7 +172,7 @@ function FPS_Mover:OnEnable()
     -- Hook to maintain position when Blizzard tries to reset
     if not self.hooked and ActionBarController_UpdateAll then
         hooksecurefunc("ActionBarController_UpdateAll", function()
-            if sessionState.enabled then
+            if FPS_Mover.db.profile.enabled then
                 FPS_Mover:ApplyFPSPosition()
             end
         end)
