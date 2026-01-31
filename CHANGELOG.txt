@@ -1,2 +1,2 @@
-v0.0.3:
-- fix saving "moving enabled" variable
+v0.0.4:
+- add retail version
