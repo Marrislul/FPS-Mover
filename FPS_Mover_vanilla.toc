@@ -1,4 +1,4 @@
-## Interface: 11507
+## Interface: 11508
 ## Title: FPS Mover
 ## Notes: Move the FPS counter anywhere on screen using a draggable anchor.
 ## Author: Marris

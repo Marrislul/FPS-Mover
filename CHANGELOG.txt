@@ -1,2 +1,2 @@
-v0.0.5:
-- add classic versions
+v0.0.6:
+- update for 1.15.8
